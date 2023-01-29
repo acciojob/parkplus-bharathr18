@@ -6,22 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "parking")
+@Table(name = "payment")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class ParkingLot {
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String address;
-
-    @OneToMany(mappedBy = "parkingLot", cascade = CascadeType.ALL)
-    private List<Spot> spotList;
+    private boolean paymentCompleted;
+    @Enumerated(value = EnumType.STRING)
+    private PaymentMode paymentMode;
+    @OneToOne(mappedBy = "payment")
+    private Reservation reservation;
 }

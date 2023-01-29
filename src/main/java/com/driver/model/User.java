@@ -9,19 +9,20 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "parking")
+@Table(name = "user")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class ParkingLot {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String address;
+    private String phoneNumber;
+    private String password;
 
-    @OneToMany(mappedBy = "parkingLot", cascade = CascadeType.ALL)
-    private List<Spot> spotList;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Reservation> reservationList;
 }

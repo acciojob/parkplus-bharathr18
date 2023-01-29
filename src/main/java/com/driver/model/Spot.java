@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "spot")
@@ -20,7 +21,14 @@ public class Spot {
     private int id;
     private int pricePerHour;
     private boolean occupied;
-    private SpotType spotType;
-    ParkingLot parkingLot;
 
+    @Enumerated(value = EnumType.STRING)
+    private SpotType spotType;
+
+    @ManyToOne
+    @JoinColumn
+    private ParkingLot parkingLot;
+
+    @OneToMany(mappedBy = "spot", cascade = CascadeType.ALL)
+    private List<Reservation> reservationList;
 }

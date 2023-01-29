@@ -22,5 +22,6 @@ public class UserController {
 
     @DeleteMapping("/delete")
     public void deleteUser(@RequestParam Integer userId){
+
     }
 }
